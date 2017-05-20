@@ -8,7 +8,8 @@ RUN apk add --no-cache \
 ARG DOCKER_VERSION
 ARG DIND_COMMIT
 
-# install docker from binaries, TODO: switch to alpine package
+# install docker from binaries
+# TODO: switch to alpine package
 RUN set -ex; \
 	apkArch="$(apk --print-arch)"; \
 	case "$apkArch" in \
@@ -25,13 +26,13 @@ RUN set -ex; \
 	docker -v
 
 # https://github.com/docker/docker/blob/master/project/PACKAGERS.md#runtime-dependencies
+# TODO: add aufs-util
 RUN apk add --no-cache \
 		btrfs-progs \
 		e2fsprogs \
 		e2fsprogs-extra \
 		iptables \
 		xfsprogs \
-        aufs-util \
 		xz
 
 # set up subuid/subgid so that "--userns-remap=default" works out-of-the-box
