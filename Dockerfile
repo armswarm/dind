@@ -31,7 +31,7 @@ RUN apk add --no-cache \
 		e2fsprogs-extra \
 		iptables \
 		xfsprogs \
-        aufs-utils \
+        aufs-util \
 		xz
 
 # set up subuid/subgid so that "--userns-remap=default" works out-of-the-box
