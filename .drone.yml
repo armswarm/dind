@@ -1,0 +1,14 @@
+pipeline:
+  docker:
+    repo: quay.io/armswarm/dind
+    build_args:
+      - DOCKER_VERSION=17.05.0-ce
+      - DIND_COMMIT=3b5fac462d21ca164b3778647420016315289034
+    tag: [ "latest", "17.05.0-ce" ]
+    when:
+      branch: master
+      event: push
+
+  slack:
+    when:
+      status: [ failure, success ]
