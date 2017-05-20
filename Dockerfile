@@ -25,6 +25,8 @@ RUN set -ex; \
 	rm "docker-${DOCKER_VERSION}.tgz"; \
 	docker -v
 
+COPY docker-entrypoint.sh /usr/local/bin/
+
 # https://github.com/docker/docker/blob/master/project/PACKAGERS.md#runtime-dependencies
 # TODO: add aufs-util
 RUN apk add --no-cache \
