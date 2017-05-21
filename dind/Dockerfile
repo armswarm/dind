@@ -3,12 +3,13 @@ FROM quay.io/armswarm/docker:{{DOCKER_VERSION}}
 RUN \
     # https://github.com/docker/docker/blob/master/project/PACKAGERS.md#runtime-dependencies
     apk add --no-cache \
-		btrfs-progs \
-		e2fsprogs \
-		e2fsprogs-extra \
-		iptables \
-		xfsprogs \
-		xz \
+        btrfs-progs \
+        curl \
+        e2fsprogs \
+        e2fsprogs-extra \
+        iptables \
+        xfsprogs \
+        xz \
         # TODO: add aufs-util
     # set up subuid/subgid so that "--userns-remap=default" works out-of-the-box
     && set -x \
