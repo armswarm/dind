@@ -6,11 +6,12 @@ pipeline:
       - DOCKER_VERSION=17.05.0-ce
       - DIND_COMMIT=3b5fac462d21ca164b3778647420016315289034
     commands:
-      - sed -i \
-          -e "s/{{DOCKER_VERSION}}/${DOCKER_VERSION}/" \
-          -e "s/{{DIND_COMMIT}}/${DIND_COMMIT}/" \
-          -e "s/{{ALPINE_VERSION}}/${ALPINE_VERSION}/" \
-          Dockerfile dind/Dockerfile
+      - |-
+          sed -i \
+            -e "s/{{DOCKER_VERSION}}/${DOCKER_VERSION}/" \
+            -e "s/{{DIND_COMMIT}}/${DIND_COMMIT}/" \
+            -e "s/{{ALPINE_VERSION}}/${ALPINE_VERSION}/" \
+            Dockerfile dind/Dockerfile
 
   docker:
     repo: quay.io/armswarm/docker
