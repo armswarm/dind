@@ -1,5 +1,5 @@
 pipeline:
-  build:
+  prepare:
     image: quay.io/armswarm/alpine:3.5
     environment:
       - ALPINE_VERSION=3.5
@@ -13,14 +13,16 @@ pipeline:
             -e "s/{{ALPINE_VERSION}}/${ALPINE_VERSION}/" \
             Dockerfile dind/Dockerfile
 
-  docker:
+  build-docker:
+    image: armswarmdrone/docker
     repo: quay.io/armswarm/docker
     tag: [ "17.05.0-ce", "17.05.0", "17.05", "17", "latest", "edge" ]
     when:
       branch: master
       event: push
 
-  docker:
+  build-dind:
+    image: armswarmdrone/docker
     repo: quay.io/armswarm/docker
     tag: [ "17.05.0-ce-dind", "17.05.0-dind", "17.05-dind", "17-dind", "dind", "edge-dind" ]
     when:
