@@ -1,3 +1,5 @@
+platform: linux/arm
+
 clone:
   git:
     image: armswarmdrone/git
@@ -19,7 +21,7 @@ pipeline:
             -e "s/{{ALPINE_VERSION}}/${ALPINE_VERSION}/" \
             Dockerfile dind/Dockerfile
 
-  build-docker:
+  build_and_publish_docker_image:
     image: armswarmdrone/docker
     repo: quay.io/armswarm/docker
     tag: [ "17.05.0-ce", "17.05.0", "17.05", "17", "latest", "edge" ]
@@ -27,7 +29,7 @@ pipeline:
       branch: master
       event: push
 
-  build-dind:
+  build_and_publish_dind_image:
     image: armswarmdrone/docker
     repo: quay.io/armswarm/docker
     context: dind/
@@ -37,7 +39,7 @@ pipeline:
       branch: master
       event: push
 
-  slack:
+  notify:
     image: armswarmdrone/slack
     when:
       status: [ failure, success ]
