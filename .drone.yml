@@ -6,9 +6,9 @@ clone:
 
 pipeline:
   prepare:
-    image: quay.io/armswarm/alpine:3.5
+    image: quay.io/armswarm/alpine:3.6
     environment:
-      - ALPINE_VERSION=3.5
+      - ALPINE_VERSION=3.6
       - DOCKER_VERSION=17.05.0-ce
       - DOCKER_PACKAGE=17.05.0-r0
       - DIND_COMMIT=3b5fac462d21ca164b3778647420016315289034
