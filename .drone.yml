@@ -2,7 +2,7 @@ platform: linux/arm
 
 clone:
   git:
-    image: armswarmdrone/git
+    image: quay.io/armswarm/drone-git
 
 pipeline:
   prepare:
@@ -22,7 +22,8 @@ pipeline:
             Dockerfile dind/Dockerfile
 
   build_and_publish_docker_image:
-    image: armswarmdrone/docker
+    image: quay.io/armswarm/drone-docker
+    secrets: [ docker_username, docker_password, docker_registry ]
     repo: quay.io/armswarm/docker
     tag: [ "17.05.0-ce", "17.05.0", "17.05", "17", "latest", "edge" ]
     when:
@@ -30,7 +31,8 @@ pipeline:
       event: push
 
   build_and_publish_dind_image:
-    image: armswarmdrone/docker
+    image: quay.io/armswarm/drone-docker
+    secrets: [ docker_username, docker_password, docker_registry ]
     repo: quay.io/armswarm/docker
     context: dind/
     dockerfile: dind/Dockerfile
@@ -40,6 +42,7 @@ pipeline:
       event: push
 
   notify:
-    image: armswarmdrone/slack
+    image: quay.io/armswarm/drone-slack
+    secrets: [ slack_webhook, plugin_channel, plugin_template ]
     when:
       status: [ failure, success ]
