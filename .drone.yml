@@ -15,10 +15,10 @@ pipeline:
     commands:
       - |-
           sed -i \
-            -e "s/{{DOCKER_VERSION}}/${DOCKER_VERSION}/" \
-            -e "s/{{DOCKER_PACKAGE}}/${DOCKER_PACKAGE}/" \
-            -e "s/{{DIND_COMMIT}}/${DIND_COMMIT}/" \
-            -e "s/{{ALPINE_VERSION}}/${ALPINE_VERSION}/" \
+            -e "s/{{DOCKER_VERSION}}/$${DOCKER_VERSION}/" \
+            -e "s/{{DOCKER_PACKAGE}}/$${DOCKER_PACKAGE}/" \
+            -e "s/{{DIND_COMMIT}}/$${DIND_COMMIT}/" \
+            -e "s/{{ALPINE_VERSION}}/$${ALPINE_VERSION}/" \
             Dockerfile dind/Dockerfile
 
   build_and_publish_docker_image:
