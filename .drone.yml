@@ -6,11 +6,11 @@ clone:
 
 pipeline:
   prepare:
-    image: quay.io/armswarm/alpine:3.6
+    image: quay.io/armswarm/alpine:3.7
     environment:
-      - ALPINE_VERSION=3.6
-      - DOCKER_VERSION=17.05.0-ce
-      - DOCKER_PACKAGE=17.05.0-r0
+      - ALPINE_VERSION=3.7
+      - DOCKER_VERSION=17.10.0-ce
+      - DOCKER_PACKAGE=17.10.0-r0
       - DIND_COMMIT=3b5fac462d21ca164b3778647420016315289034
     commands:
       - |-
@@ -25,7 +25,7 @@ pipeline:
     image: quay.io/armswarm/drone-docker
     secrets: [ docker_username, docker_password, docker_registry ]
     repo: quay.io/armswarm/docker
-    tag: [ "17.05.0-ce", "17.05.0", "17.05", "17", "latest", "edge" ]
+    tag: [ "17.10.0-ce", "17.10.0", "17.10", "17", "latest", "edge" ]
     when:
       branch: master
       event: push
@@ -36,7 +36,7 @@ pipeline:
     repo: quay.io/armswarm/docker
     context: dind/
     dockerfile: dind/Dockerfile
-    tag: [ "17.05.0-ce-dind", "17.05.0-dind", "17.05-dind", "17-dind", "dind", "edge-dind" ]
+    tag: [ "17.10.0-ce-dind", "17.10.0-dind", "17.10-dind", "17-dind", "dind", "edge-dind" ]
     when:
       branch: master
       event: push
